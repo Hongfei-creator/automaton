@@ -704,6 +704,11 @@ export const BUILTIN_TASKS: Record<string, HeartbeatTaskFn> = {
       return { shouldWake: false };
     }
   },
+
+  creator_payout: async (ctx: TickContext, taskCtx: HeartbeatLegacyContext) => {
+    const { creatorPayoutTask } = await import("./creator-payout.js");
+    return creatorPayoutTask(ctx, taskCtx);
+  },
 };
 
 function tierToInt(tier: SurvivalTier): number {
